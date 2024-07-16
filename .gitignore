@@ -1,0 +1,6 @@
+# envs
+.env
+
+# database
+*.db
+*.sqlite3
