@@ -6,11 +6,11 @@
     <link rel="stylesheet" href="../../assets/css/remedy.css">
     <link rel="stylesheet" href="../../assets/css/index.css">
     <link rel="shortcut icon" href="../../public/urubu-icon.svg" type="image/x-icon">
-    <title>Urubu do pix - Depositar</title>
+    <title>Urubu do pix - $user</title>
 </head>
 <body>
     <main>
-        Depositar
+        usuario
     </main>
 </body>
 </html>
