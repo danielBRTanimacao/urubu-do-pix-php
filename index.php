@@ -14,17 +14,17 @@
         <nav class="header-nav">
             <ul class="nav">
                 <li class="nav-item">
-                    <a href="./app/pages/deposit.php" class="nav-link">
-                        Depositar
+                    <a href="./app/pages/trading.php" class="nav-link">
+                        Trading
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        Sacar
+                    <a href="./app/pages/game.php" class="nav-link">
+                        Jogar
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="./app/pages/account.php" class="nav-link">
                         Conta
                     </a>
                 </li>
