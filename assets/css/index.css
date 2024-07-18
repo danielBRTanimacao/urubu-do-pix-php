@@ -3,6 +3,7 @@
     --variant-black: #251926;
     --variant-white: rgb(243, 243, 243);
     --color-pix: #54b6a3;
+    --variant-green: #04aa6d;
 
     --big-font: 3rem;
     --medium-font: 1.45rem;
@@ -125,9 +126,9 @@ input.trading-input:hover {
 .form-deposit input[type="submit"],
 .form-deposit input[type="reset"] {
     font-size: large;
-    background-color: #04aa6d;
+    background-color: var(--variant-green);
     border: none;
-    color: white;
+    color: var(--variant-white);
     padding: 16px 32px;
     text-decoration: none;
     margin: 4px 2px;

@@ -39,10 +39,13 @@
         </form>
     </main>
     <?php 
-        $values = $_POST['depositedValue'];
-        $fifteenDays= ($values / 100 * 33.33) * 15;
-        $thirtenDays= ($values / 100 * 33.33) * 30;
-        echo "Valores Post R\$$values em 15 dias retorna " . ceil($fifteenDays) . " com 30 dias retorna ". ceil($thirtenDays);
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            # falta salvar no database
+            $values = $_POST['depositedValue'];
+            $fifteenDays= ($values / 100 * 33.33) * 15;
+            $thirtenDays= ($values / 100 * 33.33) * 30;
+            echo "Valores Post R\$$values em 15 dias retorna " . ceil($fifteenDays) . " com 30 dias retorna ". ceil($thirtenDays);
+        }
     ?>
 </body>
 </html>

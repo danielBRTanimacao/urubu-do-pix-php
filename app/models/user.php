@@ -1,4 +1,4 @@
-<?php 
+<?php
     class User {
         public $name;
         public $password;
@@ -11,7 +11,7 @@
         }
 
         public function showInfos() {
-            return "{$this->name} {$this->password}, Ano: {$this->money}";
+            return "{$this->name}, Senha: {$this->password}, Dinheiro: {$this->money}";
         }
     }
 ?>
