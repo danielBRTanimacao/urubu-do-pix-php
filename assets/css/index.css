@@ -5,6 +5,7 @@
     --color-pix: #54b6a3;
 
     --big-font: 3rem;
+    --medium-font: 1.45rem;
 }
 
 body {
@@ -23,8 +24,23 @@ h1 {
     padding: 0.6em 0;
 }
 
+footer {
+    margin: 0 0.5em;
+}
+
+.text-trunck {
+    line-height: 0.2;
+}
+
 .center-txt {
     text-align: center;
+}
+
+.center-main {
+    justify-content: center;
+    height: 70vh;
+    display: flex;
+    align-items: center;
 }
 
 /* header principal */
@@ -40,7 +56,34 @@ h1 {
 }
 
 .h1-header {
+    display: ruby-text;
     font-size: var(--big-font);
+    color: var(--variant-white);
+}
+
+.title-trading {
+    background-color: #3a323c;
+    padding: 0.8rem;
+    margin: 0;
+    color: var(--variant-white);
+}
+
+.nav-trading {
+    display: block;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+input.trading-input {
+    font-size: var(--medium-font);
+    cursor: pointer;
+    padding: 1em 6em 1em 0.5em;
+    border: none;
+}
+
+input.trading-input:hover {
+    background-color: var(--variant-black);
     color: var(--variant-white);
 }
 
@@ -57,7 +100,8 @@ h1 {
 }
 
 .nav-link {
-    padding: 5px;
+    font-size: large;
+    padding: 10px;
     color: var(--variant-white);
 }
 

@@ -10,7 +10,12 @@
 </head>
 <body>
     <header class="bg-primary">
-        <h1 class="center-txt h1-header">Urubu do pix</h1>
+        <h1 class="center-txt h1-header">
+            Urubu do pix
+            <a href="./index.php">
+                <img width="60" src="./assets/svgs/logo-pix.svg" alt="icone_do_pix">
+            </a>
+        </h1>
         <nav class="header-nav">
             <ul class="nav">
                 <li class="nav-item">
@@ -31,8 +36,49 @@
             </ul>
         </nav>
     </header>
-    <main>
-        principal
+    <main class="center-main">
+        <div>
+            <h2 class="title-trading">Tabela de Trading</h2>
+            <ul class="nav-trading">
+                <li>
+                    <form action="./app/pages/trading.php" method="post">
+                        <input type="hidden" name="depositedValue" value="200">
+                        <input class="trading-input" type="submit" value="$200 Retorno 2000">
+                    </form>
+                </li>   
+                <li>
+                    <form action="./app/pages/trading.php" method="post">
+                        <input type="hidden" name="depositedValue" value="250">
+                        <input class="trading-input" type="submit" value="$250 Retorno 2500">
+                    </form>
+                </li>
+                <li>
+                    <form action="./app/pages/trading.php" method="post">
+                        <input type="hidden" name="depositedValue" value="300">
+                        <input class="trading-input" type="submit" value="$300 Retorno 3000">
+                    </form>
+                </li>
+                <li>
+                    <form action="./app/pages/trading.php" method="post">
+                        <input type="hidden" name="depositedValue" value="350">
+                        <input class="trading-input" type="submit" value="$350 Retorno 3500">
+                    </form>
+                </li>
+                <li>
+                    <form action="./app/pages/trading.php" method="post">
+                        <input type="hidden" name="depositedValue" value="400">
+                        <input class="trading-input" type="submit" value="$400 Retorno 4000">
+                    </form>
+                </li>
+            </ul>
+        </div>
     </main>
+    <footer>
+        <div class="img-footer text-trunck">
+            <p>Seguro</p>
+            <p>Pratico</p>
+            <p>Rapido</p>
+        </div>
+    </footer>
 </body>
 </html>

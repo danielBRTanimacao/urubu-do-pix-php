@@ -10,7 +10,20 @@
 </head>
 <body>
     <main>
-        Criar
+        <h2>Registrar Usuário</h2>
+        <form action="./create.php" method="post">
+            <label for="username">Nome de Usuário:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password" required>
+            <input type="submit" value="Registrar">
+        </form>
     </main>
+    <?php 
+        include "../models/user.php";
+
+        $user = new User('Daniel', '123', 300);
+        echo "<p>{$user->showInfos()}</p>";
+    ?>
 </body>
 </html>

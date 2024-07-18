@@ -13,5 +13,9 @@
         Depositar
         Sacar
     </main>
+    <?php 
+        $values = $_POST['depositedValue'];
+        echo "Valores Post $values";
+    ?>
 </body>
 </html>
