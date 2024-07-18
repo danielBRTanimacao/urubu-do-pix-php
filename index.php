@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="./assets/css/remedy.css">
     <link rel="stylesheet" href="./assets/css/index.css">
     <link rel="shortcut icon" href="./public/urubu-icon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <title>Urubu do pix - Index</title>
 </head>
 <body>
@@ -37,7 +38,7 @@
         </nav>
     </header>
     <main class="center-main">
-        <div>
+        <div class="row-main-table">
             <h2 class="title-trading">Tabela de Trading</h2>
             <ul class="nav-trading">
                 <li>
@@ -71,14 +72,21 @@
                     </form>
                 </li>
             </ul>
+            <div class="img-center">
+                <img src="./assets/imgs/pngegg.png" width="300" alt="urubu-image"> 
+            </div>
         </div>
     </main>
-    <footer>
-        <div class="img-footer text-trunck">
-            <p>Seguro</p>
-            <p>Pratico</p>
-            <p>Rapido</p>
-        </div>
+    <footer class="pd-p">
+        <p style="padding-top: 10px;">
+            <i class="bi bi-check-circle" style="padding: 0 5px 0 0;"></i>Seguro
+        </p>
+        <p>
+            <i class="bi bi-check-circle" style="padding: 0 5px 0 0;"></i>Rapido
+        </p>
+        <p>
+            <i class="bi bi-check-circle" style="padding: 0 5px 0 0;"></i>Pratico
+        </p>
     </footer>
 </body>
 </html>
