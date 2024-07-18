@@ -99,6 +99,45 @@ input.trading-input:hover {
     color: var(--variant-white);
 }
 
+/*Form deposit*/
+.form-deposit {
+    width: 500px;
+    gap: 10px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+}
+
+.form-deposit label {
+    font-size: large;
+    font-weight: 250;
+}
+
+.form-deposit input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+.form-deposit input[type="button"],
+.form-deposit input[type="submit"],
+.form-deposit input[type="reset"] {
+    font-size: large;
+    background-color: #04aa6d;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.form-deposit input[type="submit"]:hover {
+    background-color: #106143;
+}
+
 /*footer*/
 .pd-p p {
     font-size: large;
