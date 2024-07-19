@@ -34,7 +34,7 @@
     <main class="center-main">
         <form action="./trading.php" method="post" class="form-deposit">
             <label for="depositedValue">Valor para depositar...</label>
-            <input type="text" name="depositedValue" id="depositedValueId" placeholder="R$..." required autofocus>
+            <input type="number" name="depositedValue" id="depositedValueId" placeholder="R$..." required autofocus>
             <input type="submit" value="Depositar">
         </form>
     </main>

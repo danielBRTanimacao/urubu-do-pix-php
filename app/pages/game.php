@@ -9,8 +9,37 @@
     <title>Urubu do pix - Jogo</title>
 </head>
 <body>
-    <main>
-        Jogo
+    <header class="bg-primary">
+        <h1 class="center-txt h1-header">
+            Jogo do Urubu
+            <a href="../../index.php">
+                <img width="60" src="../../assets/svgs/logo-pix.svg" alt="icone_do_pix">
+            </a>
+        </h1>
+    </header>
+    <main class="center-main break-game" style="height: 80vh !important;">
+        <div class="game">
+            <div class="box-game">
+                <p id="first-number">
+                    0
+                </p>
+            </div>
+            <div class="box-game">
+                <p id="second-number">
+                    0
+                </p>
+            </div>
+            <div class="box-game">
+                <p id="third-number">
+                    0
+                </p>
+            </div>
+        </div>
+        <form action="./game.php" method="post" class="form-deposit">
+            <input type="hidden" name="amount">
+            <input type="button" value="Girar R$5.00" id="rollGame">
+            <input type="submit" value="Sacar" disabled>
+        </form>
     </main>
     <script src="../../assets/js/game.js"></script>
 </body>
