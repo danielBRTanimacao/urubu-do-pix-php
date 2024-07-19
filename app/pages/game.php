@@ -35,11 +35,19 @@
                 </p>
             </div>
         </div>
-        <form action="./game.php" method="post" class="form-deposit">
-            <input type="hidden" name="amount">
-            <input type="button" value="Girar R$5.00" id="rollGame">
-            <input type="submit" value="Sacar" disabled>
-        </form>
+        <?php
+            if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+                echo"
+                <form action=\"./game.php\" method=\"post\" class=\"form-deposit\">
+                    <input type=\"hidden\" name=\"amount\" value=\"10\">
+                    <input type=\"button\" value=\"Girar R$5.00\" id=\"rollGame\">
+                    <input type=\"submit\" value=\"Sacar\" disabled id=\"sWithdrawn\">
+                </form>";
+            } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $valuePost = $_POST['amount'];
+                echo"<p class=\"winner\">Valor resgatado R\$$valuePost</p>";
+            }
+        ?>
     </main>
     <script src="../../assets/js/game.js"></script>
 </body>

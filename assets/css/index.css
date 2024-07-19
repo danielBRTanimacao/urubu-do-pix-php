@@ -1,11 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap");
 
 :root {
     --variant-light: #3a323c;
     --variant-black: #251926;
     --variant-white: rgb(243, 243, 243);
     --color-pix: #54b6a3;
+    --smooth-darker-green: #106143;
     --variant-green: #04aa6d;
+    --variant-darker-green: #0f3124;
 
     --big-font: 3rem;
     --medium-font: 1.45rem;
@@ -137,18 +140,15 @@ input.trading-input:hover {
     cursor: pointer;
 }
 
-.form-deposit input[type="submit"]:disabled {
+.form-deposit input[type="submit"]:disabled,
+.form-deposit input[type="button"]:disabled {
     color: rgba(255, 255, 255, 0.5);
-    background-color: #0f3124;
-}
-
-.form-deposit input[type="submit"]:disabled:hover {
-    background-color: #0f3124;
+    background-color: var(--variant-darker-green) !important;
 }
 
 .form-deposit input[type="submit"]:hover,
 .form-deposit input[type="button"]:hover {
-    background-color: #106143;
+    background-color: var(--smooth-darker-green);
 }
 
 /*footer*/
@@ -241,4 +241,11 @@ input.trading-input:hover {
     padding: 90px 60px;
     background-color: rgb(183, 183, 183);
     border-radius: 5px;
+}
+
+.winner {
+    font-family: "EB Garamond", serif;
+    color: var(--variant-darker-green);
+    font-weight: 700;
+    font-size: 2.5rem;
 }
