@@ -9,7 +9,6 @@
         money REAL NOT NULL,
     )");
 
-    echo "Banco de dados e tabela criados com sucesso.";
     class User {
         public $username;
         public $password;

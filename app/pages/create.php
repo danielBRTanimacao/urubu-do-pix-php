@@ -28,10 +28,31 @@
     </main>
     <?php
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            include "../models/user.php";
-    
-            $user = new User('Daniel', '123', 300);
-            echo "<p>{$user->showInfos()}</p>";
+            // include "../models/user.php";
+            
+            session_start();
+            $db = new SQLite3("../../db.sqlite3");
+
+            $db->exec("CREATE TABLE IF NOT EXISTS users ( id INTEGER PRIMARY KEY AUTOINCREMENT,
+                username TEXT UNIQUE NOT NULL,
+                password TEXT NOT NULL,
+                money REAL NOT NULL
+            )");
+
+            $username = $_POST['username'];
+            $password = password_hash($_POST['username'], PASSWORD_DEFAULT);
+            $money = 0;
+
+            $stmt = $db->prepare("INSERT INTO users (username, password, money) VALUES (:username, :password, :money)");
+            $stmt->bindValue(":username", $username, SQLITE3_TEXT);
+            $stmt->bindValue(":password", $password, SQLITE3_TEXT);
+            $stmt->bindValue(":money", $money, SQLITE3_FLOAT);
+
+            if ($stmt->execute()) {
+                echo "<p>Usuario criado com sucesso</p>";
+            } else {
+                echo "<p>Ocorreu um erro</p>";
+            }
         }
     ?>
 </body>

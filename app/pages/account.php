@@ -34,5 +34,19 @@
     <main>
         usuario
     </main>
+    <?php 
+        session_start();
+
+        // Verificar se o usuário está autenticado
+        if (!isset($_SESSION['authenticated']) || !$_SESSION['authenticated']) {
+            header('Location: login.php');
+            exit();
+        }
+        
+        // Exibir conteúdo da conta do usuário
+        echo "<h2>Bem-vindo, " . htmlspecialchars($_SESSION['username']) . "!</h2>";
+        echo "<p>Esta é a sua página de conta.</p>";
+        echo "<a href='logout.php'>Logout</a>";
+    ?>
 </body>
 </html>
