@@ -39,6 +39,14 @@
         </form>
     </main>
     <?php 
+        session_start();
+        
+        if (!isset($_SESSION['authenticated']) || !$_SESSION['authenticated']) {
+            header('Location: login.php');
+            exit();
+        }
+    ?>
+    <?php 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             # falta salvar no database
             $values = $_POST['depositedValue'];

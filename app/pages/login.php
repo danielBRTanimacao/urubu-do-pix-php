@@ -23,6 +23,9 @@
             <input type="text" id="username" name="username" required>
             <label for="password">Senha:</label>
             <input type="password" id="password" name="password" required>
+            <p>
+                Não tem uma conta? <a href="./create.php">Criar</a>
+            </p>
             <input type="submit" value="Login">
         </form>
     </main>

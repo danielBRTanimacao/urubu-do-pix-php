@@ -49,6 +49,14 @@
             }
         ?>
     </main>
+    <?php 
+        session_start();
+        
+        if (!isset($_SESSION['authenticated']) || !$_SESSION['authenticated']) {
+            header('Location: login.php');
+            exit();
+        }
+    ?>
     <script src="../../assets/js/game.js"></script>
 </body>
 </html>

@@ -23,12 +23,14 @@
             <input type="text" id="username" name="username" required>
             <label for="password">Senha:</label>
             <input type="password" id="password" name="password" required>
+            <p>
+                Ja tem uma conta? <a href="./login.php">Entrar</a>
+            </p>
             <input type="submit" value="Registrar">
         </form>
     </main>
     <?php
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // include "../models/user.php";
             
             session_start();
             $db = new SQLite3("../../db.sqlite3");
@@ -49,9 +51,10 @@
             $stmt->bindValue(":money", $money, SQLITE3_FLOAT);
 
             if ($stmt->execute()) {
-                echo "<p>Usuario criado com sucesso</p>";
+                header('Location: login.php');
+                exit();
             } else {
-                echo "<p>Ocorreu um erro</p>";
+                echo "<p style=\"text-align: center; color: red; font-weight: 700;\">Ocorreu um erro</p>";
             }
         }
     ?>
