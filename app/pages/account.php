@@ -33,6 +33,16 @@
     </header>
     <main>
         usuario
+        <a href="#">sair da conta</a>
+        <?php
+            function exitAccount() {
+                # quando clicar
+                session_start();
+                session_unset();
+                session_destroy();
+                header('Location: login.html');
+            } 
+        ?>
     </main>
     <?php 
         session_start();

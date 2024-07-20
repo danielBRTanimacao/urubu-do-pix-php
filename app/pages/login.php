@@ -23,7 +23,7 @@
             <input type="text" id="username" name="username" required>
             <label for="password">Senha:</label>
             <input type="password" id="password" name="password" required>
-            <p>
+            <p style="padding: 0; margin: 0;">
                 Não tem uma conta? <a href="./create.php">Criar</a>
             </p>
             <input type="submit" value="Login">
@@ -46,10 +46,12 @@
             if ($row && password_verify($password, $row['password'])) {
                 $_SESSION['authenticated'] = true;
                 $_SESSION['username'] = $username;
-                echo "<p>Login bem-sucedido. <a href='./account.php'>Acessar Conta</a></p>";
+                header('Location: account.php');
+                exit();
             } else {
-                echo "<p>Nome de usuário ou senha incorretos.</p>";
+                echo "Nome de usuário ou senha incorretos.";
             }
+            
         }
     ?>
 </body>

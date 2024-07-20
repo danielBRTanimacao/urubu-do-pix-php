@@ -23,7 +23,7 @@
             <input type="text" id="username" name="username" required>
             <label for="password">Senha:</label>
             <input type="password" id="password" name="password" required>
-            <p>
+            <p style="padding: 0; margin: 0;">
                 Ja tem uma conta? <a href="./login.php">Entrar</a>
             </p>
             <input type="submit" value="Registrar">
