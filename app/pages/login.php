@@ -42,12 +42,12 @@
             while($row = $ret->fetchArray(SQLITE3_ASSOC) ){
                $id=$row['id'];
                $username=$row["username"];
-               $password=$row['password'];
+               $password=$row["password"];
             }
             if ($id!=""){
                 if ($password==$_POST["password"]){
                     $_SESSION["login"]=$username;
-                    header('Location: account.php');    
+                    header('Location: ./account.php');    
                 }else{
                    
                    echo "Wrong Password";
