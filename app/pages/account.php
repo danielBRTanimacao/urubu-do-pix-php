@@ -1,12 +1,12 @@
 <?php 
     session_start();
 
-    // Verificar se o usuário está autenticado
     if (!isset($_SESSION['authenticated']) || !$_SESSION['authenticated']) {
         header('Location: login.php');
         exit();
     }
-        
+
+    $money = 23.4;
     $username = htmlspecialchars($_SESSION['username']);
 ?>
 <!DOCTYPE html>
@@ -42,9 +42,19 @@
             </ul>
         </nav>
     </header>
-    <main>
-        usuario
-        <a href="./logout.php">sair da conta</a>
+    <main class="center-main">
+        <div>
+            <nav style="display: flex; align-items: center; gap: 15px;">
+                <h1>
+                    Dinheiro do user
+                </h1>
+                <a class="btn" href="./logout.php">sair da conta</a>
+            
+            </nav>
+            <p style="font-size: large;">
+                <?php echo "R$" . number_format($money, 2, ',', '.');?>
+            </p>
+        </div>
     </main>
 </body>
 </html>

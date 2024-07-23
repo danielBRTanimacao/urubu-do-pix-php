@@ -61,6 +61,17 @@ h1 {
     align-items: center;
 }
 
+.btn {
+    font-size: large;
+    background-color: var(--variant-green);
+    border: none;
+    color: var(--variant-white);
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
 /* header principal */
 .header-nav {
     display: flex;
