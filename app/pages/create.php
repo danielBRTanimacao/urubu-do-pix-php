@@ -42,8 +42,8 @@
             )");
 
             $username = $_POST['username'];
-            $password = $_POST['password'];
-            // $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+            // $password = $_POST['password'];
+            $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
             $money = 0;
 
             $stmt = $db->prepare("INSERT INTO users (username, password, money) VALUES (:username, :password, :money)");

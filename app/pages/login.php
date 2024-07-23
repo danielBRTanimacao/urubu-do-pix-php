@@ -34,28 +34,23 @@
             
             session_start();
             $db = new SQLite3('../../db.sqlite3');
-            
-            $sql ='SELECT * from users where username="'.$_POST["username"].'";';
 
+            $username = $_POST['username'];
+            $password = $_POST['password'];
 
-            $ret = $db->query($sql);
-            while($row = $ret->fetchArray(SQLITE3_ASSOC) ){
-               $id=$row['id'];
-               $username=$row["username"];
-               $password=$row["password"];
+            $stmt = $db->prepare("SELECT password FROM users WHERE username = :username");
+            $stmt->bindValue(':username', $username, SQLITE3_TEXT);
+            $result = $stmt->execute();
+            $row = $result->fetchArray(SQLITE3_ASSOC);
+
+            if ($row && password_verify($password, $row['password'])) {
+                $_SESSION['authenticated'] = true;
+                $_SESSION['username'] = $username;
+                header('Location: ./account.php');
+                exit();
+            } else {
+                echo "Nome de usuário ou senha incorretos.";
             }
-            if ($id!=""){
-                if ($password==$_POST["password"]){
-                    $_SESSION["login"]=$username;
-                    header('Location: ./account.php');    
-                }else{
-                   
-                   echo "Wrong Password";
-                }
-               }else{
-                echo "User not exist, please register to continue!";
-            }
-            $db->close();
             
         }
     ?>

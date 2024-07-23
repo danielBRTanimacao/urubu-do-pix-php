@@ -1,3 +1,14 @@
+<?php 
+    session_start();
+
+    // Verificar se o usuário está autenticado
+    if (!isset($_SESSION['authenticated']) || !$_SESSION['authenticated']) {
+        header('Location: login.php');
+        exit();
+    }
+        
+    $username = htmlspecialchars($_SESSION['username']);
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -6,12 +17,12 @@
     <link rel="stylesheet" href="../../assets/css/remedy.css">
     <link rel="stylesheet" href="../../assets/css/index.css">
     <link rel="shortcut icon" href="../../public/urubu-icon.svg" type="image/x-icon">
-    <title>Urubu do pix - user</title>
+    <title>Urubu do pix - <?php echo $username ?> </title>
 </head>
 <body>
     <header class="bg-primary">
         <h1 class="center-txt h1-header">
-            Sobre o usuario - <?php echo"user"?>
+            Sobre o usuario - <?php echo $username ?>
             <a href="../../index.php">
                 <img width="60" src="../../assets/svgs/logo-pix.svg" alt="icone_do_pix">
             </a>
@@ -33,30 +44,7 @@
     </header>
     <main>
         usuario
-        <a href="#">sair da conta</a>
-        <?php
-            function exitAccount() {
-                # quando clicar
-                session_start();
-                session_unset();
-                session_destroy();
-                header('Location: login.html');
-            } 
-        ?>
+        <a href="./logout.php">sair da conta</a>
     </main>
-    <?php 
-        session_start();
-
-        // Verificar se o usuário está autenticado
-        if (!isset($_SESSION['authenticated']) || !$_SESSION['authenticated']) {
-            header('Location: login.php');
-            exit();
-        }
-        
-        // Exibir conteúdo da conta do usuário
-        echo "<h2>Bem-vindo, " . htmlspecialchars($_SESSION['username']) . "!</h2>";
-        echo "<p>Esta é a sua página de conta.</p>";
-        echo "<a href='logout.php'>Logout</a>";
-    ?>
 </body>
 </html>
