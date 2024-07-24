@@ -44,7 +44,7 @@
             $username = $_POST['username'];
             // $password = $_POST['password'];
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-            $money = 0;
+            $money = 100;
 
             $stmt = $db->prepare("INSERT INTO users (username, password, money) VALUES (:username, :password, :money)");
             $stmt->bindValue(":username", $username, SQLITE3_TEXT);
