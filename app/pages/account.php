@@ -6,7 +6,7 @@
         exit();
     }
 
-    $money = 100;
+    $money = $_SESSION['money_user'] ?? 100;
     $username = htmlspecialchars($_SESSION['username']);
 ?>
 <!DOCTYPE html>
@@ -17,12 +17,12 @@
     <link rel="stylesheet" href="../../assets/css/remedy.css">
     <link rel="stylesheet" href="../../assets/css/index.css">
     <link rel="shortcut icon" href="../../public/urubu-icon.svg" type="image/x-icon">
-    <title>Urubu do pix - <?php echo $username ?></title>
+    <title>Urubu do pix - <?=$username?></title>
 </head>
 <body>
     <header class="bg-primary">
         <h1 class="center-txt h1-header">
-            Sobre o usuario - <?php echo $username ?>
+            Sobre o usuario - <?=$username?>
             <a href="../../index.php">
                 <img width="60" src="../../assets/svgs/logo-pix.svg" alt="icone_do_pix">
             </a>
@@ -51,7 +51,7 @@
                 <a class="btn" href="./logout.php">sair da conta</a>
             </nav>
             <p style="font-size: large; border-left: 5px solid green;">
-                <?php echo "R$" . number_format($money, 2, ',', '.');?>
+                <?="R$" . number_format($money, 2, ',', '.')?>
             </p>
         </div>
     </main>

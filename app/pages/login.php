@@ -27,32 +27,35 @@
                 Não tem uma conta? <a href="./create.php">Criar</a>
             </p>
             <input type="submit" value="Login">
+            <?php
+                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+                    session_start();
+                    $db = new SQLite3('../../db.sqlite3');
+
+                    $username = $_POST['username'];
+                    $password = $_POST['password'];
+                    $stmt = $db->prepare("SELECT password FROM users WHERE username = :username");
+                    $stmt->bindValue(':username', $username, SQLITE3_TEXT);
+                    $result = $stmt->execute();
+                    $row = $result->fetchArray(SQLITE3_ASSOC);
+
+                    $stmt2 = $db->prepare("SELECT money FROM users WHERE username = :username");
+                    $stmt2->bindValue(':money', $money, SQLITE3_TEXT);
+
+                    if ($row && password_verify($password, $row['password'])) {
+                        $_SESSION['authenticated'] = true;
+                        $_SESSION['username'] = $username;
+                        $_SESSION['money_user'] = $money;
+                        header('Location: ./account.php');
+                        exit();     
+                    } else {
+                        echo "<p style=\"color: red;\">Nome de usuário ou senha incorretos.</p>";
+                    }
+                        
+                }
+            ?>
         </form>
     </main>
-    <?php
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            
-            session_start();
-            $db = new SQLite3('../../db.sqlite3');
-
-            $username = $_POST['username'];
-            $password = $_POST['password'];
-
-            $stmt = $db->prepare("SELECT password FROM users WHERE username = :username");
-            $stmt->bindValue(':username', $username, SQLITE3_TEXT);
-            $result = $stmt->execute();
-            $row = $result->fetchArray(SQLITE3_ASSOC);
-
-            if ($row && password_verify($password, $row['password'])) {
-                $_SESSION['authenticated'] = true;
-                $_SESSION['username'] = $username;
-                header('Location: ./account.php');
-                exit();
-            } else {
-                echo "Nome de usuário ou senha incorretos.";
-            }
-            
-        }
-    ?>
 </body>
 </html>

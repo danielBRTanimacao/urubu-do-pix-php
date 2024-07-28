@@ -45,10 +45,8 @@
             header('Location: login.php');
             exit();
         }
-    ?>
-    <?php 
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            # falta salvar no database
             $values = $_POST['depositedValue'];
             $fifteenDays= ($values / 100 * 33.33) * 15;
             $thirtenDays= ($values / 100 * 33.33) * 30;
