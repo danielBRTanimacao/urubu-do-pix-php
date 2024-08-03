@@ -162,6 +162,16 @@ input.trading-input:hover {
     background-color: var(--smooth-darker-green);
 }
 
+.lead {
+    font-weight: 340;
+    font-size: large;
+}
+
+.border-left {
+    font-size: large;
+    border-left: 5px solid green;
+}
+
 /*footer*/
 .pd-p p {
     font-size: large;

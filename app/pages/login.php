@@ -35,13 +35,31 @@
 
                     $username = $_POST['username'];
                     $password = $_POST['password'];
-                    $stmt = $db->prepare("SELECT password FROM users WHERE username = :username");
-                    $stmt->bindValue(':username', $username, SQLITE3_TEXT);
-                    $result = $stmt->execute();
-                    $row = $result->fetchArray(SQLITE3_ASSOC);
+                    
+                    try {
+                        $stmt = $db->prepare("SELECT password, money FROM users WHERE username = :username");
+                        $stmt->bindValue(':username', $username, SQLITE3_TEXT);
+                        $result = $stmt->execute();
+                        $row = $result->fetchArray(SQLITE3_ASSOC);
+                    
+                        if ($row) {
+                            // Verifica se a senha está correta
+                            if (password_verify($password, $row['password'])) {
+                                $money = $row['money'];
+                                // Continue com o processamento, por exemplo, autenticar o usuário
+                            } else {
+                                // Senha incorreta
+                                echo "<p style=\"color: red;\">Nome de usuário ou senha incorretos.</p>";
+                            }
+                        } else {
+                            // Usuário não encontrado
+                            echo "<p style=\"color: red;\">Usuário não encontrado.</p>";
+                        }
+                    } catch (Exception $e) {
+                        $money = 0;
+                        echo "Ocorreu um erro: " . $e->getMessage();
+                    }
 
-                    $stmt2 = $db->prepare("SELECT money FROM users WHERE username = :username");
-                    $stmt2->bindValue(':money', $money, SQLITE3_TEXT);
 
                     if ($row && password_verify($password, $row['password'])) {
                         $_SESSION['authenticated'] = true;
@@ -49,10 +67,7 @@
                         $_SESSION['money_user'] = $money;
                         header('Location: ./account.php');
                         exit();     
-                    } else {
-                        echo "<p style=\"color: red;\">Nome de usuário ou senha incorretos.</p>";
-                    }
-                        
+                    }     
                 }
             ?>
         </form>

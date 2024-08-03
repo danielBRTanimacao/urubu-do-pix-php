@@ -1,3 +1,32 @@
+<?php 
+    session_start();    
+    if (!isset($_SESSION['authenticated']) || !$_SESSION['authenticated']) {
+        header('Location: login.php');
+        exit();
+    }
+
+    $db = new SQLite3('../../db.sqlite3');
+
+    $error = null;
+
+    $username = htmlspecialchars($_SESSION['username']);
+
+    try {
+        // Seleciona o valor de money do usuário
+        $stmt = $db->prepare("SELECT money FROM users WHERE username = :username");
+        $stmt->bindValue(':username', $username, SQLITE3_TEXT);
+        $result = $stmt->execute();
+        $row = $result->fetchArray(SQLITE3_ASSOC);
+
+        if ($row) {
+            $money = $row['money'];
+        } else {
+            $error = "Usuário não encontrado.";
+        }
+    } catch (Exception $e) {
+        $error = "Ocorreu um erro: " . $e->getMessage();
+    }
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -18,6 +47,11 @@
         </h1>
     </header>
     <main class="center-main break-game" style="height: 80vh !important;">
+        <article style="display: grid; width: 50%; justify-content: start;">
+            <p class="border-left" id="user-money">
+                <?="R\$" . number_format($money, 2, ',', '.')?>
+            </p>
+        </article>
         <div class="game">
             <div class="box-game">
                 <p id="first-number">
@@ -49,14 +83,6 @@
             }
         ?>
     </main>
-    <?php 
-        session_start();
-        
-        if (!isset($_SESSION['authenticated']) || !$_SESSION['authenticated']) {
-            header('Location: login.php');
-            exit();
-        }
-    ?>
     <script src="../../assets/js/game.js"></script>
 </body>
 </html>

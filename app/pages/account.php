@@ -6,8 +6,28 @@
         exit();
     }
 
-    $money = $_SESSION['money_user'] ?? 100;
+    $db = new SQLite3('../../db.sqlite3');
+
+    $error = null;
+
     $username = htmlspecialchars($_SESSION['username']);
+
+    try {
+        // Seleciona o valor de money do usuário
+        $stmt = $db->prepare("SELECT money FROM users WHERE username = :username");
+        $stmt->bindValue(':username', $username, SQLITE3_TEXT);
+        $result = $stmt->execute();
+        $row = $result->fetchArray(SQLITE3_ASSOC);
+
+        if ($row) {
+            $money = $row['money'];
+        } else {
+            $error = "Usuário não encontrado.";
+        }
+    } catch (Exception $e) {
+        $error = "Ocorreu um erro: " . $e->getMessage();
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -50,8 +70,11 @@
                 </h1>
                 <a class="btn" href="./logout.php">sair da conta</a>
             </nav>
-            <p style="font-size: large; border-left: 5px solid green;">
+            <p class="border-left">
                 <?="R$" . number_format($money, 2, ',', '.')?>
+            </p>
+            <p style="color: red;">
+                <?= $error?>
             </p>
         </div>
     </main>
