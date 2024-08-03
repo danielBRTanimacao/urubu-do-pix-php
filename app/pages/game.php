@@ -49,7 +49,13 @@
     <main class="center-main break-game" style="height: 80vh !important;">
         <article style="display: grid; width: 50%; justify-content: start;">
             <p class="border-left" id="user-money">
-                <?="R\$" . number_format($money, 2, ',', '.')?>
+                <?php 
+                    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                        echo "Obgrigado por jogar!";
+                    } else {
+                        echo "R$" . number_format($money, 2, ',', '.');
+                    }
+                ?>
             </p>
         </article>
         <div class="game">
@@ -73,13 +79,45 @@
             if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 echo"
                 <form action=\"./game.php\" method=\"post\" class=\"form-deposit\">
-                    <input type=\"hidden\" name=\"amount\" value=\"10\">
+                    <input type=\"hidden\" name=\"amount\" id=\"amountId\" value=\"0\">
                     <input type=\"button\" value=\"Girar R$5.00\" id=\"rollGame\">
                     <input type=\"submit\" value=\"Sacar\" disabled id=\"sWithdrawn\">
                 </form>";
             } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                
+                $username = $_SESSION['username'];
                 $valuePost = $_POST['amount'];
-                echo"<p class=\"winner\">Valor resgatado R\$$valuePost</p>";
+    
+                try {
+                    $db->exec('BEGIN');
+    
+                    $stmt = $db->prepare("SELECT money FROM users WHERE username = :username");
+                    $stmt->bindValue(':username', $username, SQLITE3_TEXT);
+                    $result = $stmt->execute();
+                    $row = $result->fetchArray(SQLITE3_ASSOC);
+    
+                    if ($row) {
+                        $newMoney = $valuePost;
+    
+                        // Atualiza o valor de money no banco de dados
+                        $stmt = $db->prepare("UPDATE users SET money = :money WHERE username = :username");
+                        $stmt->bindValue(':money', $newMoney, SQLITE3_FLOAT);
+                        $stmt->bindValue(':username', $username, SQLITE3_TEXT);
+                        $stmt->execute();
+    
+                        // Confirma a transação
+                        $db->exec('COMMIT');
+    
+                        $success = "<p class=\"lead\" style=\"color: green;\">Depósito realizado com sucesso! Novo saldo: " . $newMoney . "</p>";
+                    } else {
+                        $error = "<p class=\"lead\" style=\"color: red;\">Usuario não encontrado</p>";
+                    }
+                } catch (Exception $e) {
+                    $db->exec('ROLLBACK');
+                    $error = "<p class=\"lead\" style \"color: red;\">Ocorreu um erro: " . $e->getMessage(). "</p>";
+                }
+
+                echo"<p class=\"winner\">Valor resgatado R$" . number_format($valuePost,2, ',', '.') . "</p>";
             }
         ?>
     </main>
